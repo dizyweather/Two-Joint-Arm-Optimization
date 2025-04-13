@@ -27,12 +27,10 @@ class Arm:
             current_position = (current_position[0] + current_length * np.cos(current_angle), 
                           current_position[1] + current_length * np.sin(current_angle))
 
-        
         return current_position
 
     def change_angles(self, array_of_angles):
         self.linkeage_angles = array_of_angles
-        pass
 
     # given a matplot plot, draw yourself on said plot
     def draw(self, plt):
