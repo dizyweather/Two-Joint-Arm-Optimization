@@ -11,5 +11,10 @@ arm.add_linkeage(np.pi /2, 1)
 sim = Simulation((1, 1), arm)
 sim.draw(plt)
 
+plt.xticks(range(-5, 5))
+plt.yticks(range(-1, 5))
+
 plt.show()
 
+
+print(np.sin(np.pi))
