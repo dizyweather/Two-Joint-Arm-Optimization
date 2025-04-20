@@ -9,18 +9,27 @@ To determine an optimal path, the arm will employ a modified version of Newton's
 * Maximum Angle Change - How far the entire arm (angle from base to end of arm) may rotate in one iteration
 This project will be simulating the resulting, realistic movement of the robotic arm using Matplotlib--allowing a clear simulation of how the arm behaves under varying environments.
 
-Research Questions
+## Research Questions
+Given a robotic arm of n linkeages and /theta degrees of freedom:
+* Is it possible for the arm to reach the goal state from any configuration?
+* Is it possible for the arm to reach the goal state with any static barriers blocking its path?
+* What is the most optimal route for the arm to reach the goal state?
+* How many different configurations can the arm make to reach the goal state?
+* How long does it take the arm to reach the goal state?
+* Does increasing the degrees of freedom/number of linkeages improve finding the goal state?
 
-Methods-data description
 
-Methods-numerical-Methods and software
+## Methods-data description
 
-Results (done last)
 
-Tables figures (done last)
+## Methods-numerical-Methods and software
 
-Conclusion-findings (done last)
+## Results (done last)
 
-Conclusion-limitations & future research
+## Tables figures (done last)
 
-Citations (ask for citations)
+## Conclusion-findings (done last)
+
+## Conclusion-limitations & future research
+
+## Citations (ask for citations)
