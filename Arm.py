@@ -10,7 +10,6 @@ class Arm:
         # Instead have a function that can add lengths and linkeages to an array
         self.linkeage_angles = [] # angle of lineage in radians in global frame (floats)
         self.linkeage_lengths = [] # in meters or change to like pixels? (floats)
-        pass
 
     # Adds a new linkeage to the arrays
     def add_linkeage(self, angle, length):
@@ -48,19 +47,39 @@ class Arm:
             current_length = self.linkeage_lengths[i]
             current_angle = self.linkeage_angles[i]
 
-            print(current_angle)
-
             next_point = (current_position[0] + current_length * np.cos(current_angle), 
                           current_position[1] + current_length * np.sin(current_angle))
             
             x_vals = [current_position[0], next_point[0]]
             y_vals = [current_position[1], next_point[1]]
 
-            print(f"Plotting points {x_vals}, {y_vals}")
-
             plt.plot(x_vals, y_vals)
 
             current_position = next_point
+    
+    # calculate the Jacobian matrix for the arm
+    # The Jacobian matrix relates the change in joint angles to the change in end effector position
+    def calculate_jacobian(self):
+        n = len(self.linkeage_angles)
+        J = np.zeros((2, n))
+
+        current_position = self.start_position
+        for i in range(n):
+            current_length = self.linkeage_lengths[i]
+            current_angle = self.linkeage_angles[i]
+
+            # Calculate the position of the end effector
+            end_effector_position = (current_position[0] + current_length * np.cos(current_angle), 
+                                     current_position[1] + current_length * np.sin(current_angle))
+
+            # Calculate the Jacobian entries
+            J[0, i] = -current_length * np.sin(current_angle)
+            J[1, i] = current_length * np.cos(current_angle)
+
+            # Update the current position for the next link
+            current_position = end_effector_position
+
+        return J
 
 # Outside the arm class, simple test case function
 def run_sim():
@@ -73,7 +92,5 @@ def run_sim():
     sim.draw(plt)
     plt.axis('equal')
     plt.show()
-
-run_sim()
         
         
