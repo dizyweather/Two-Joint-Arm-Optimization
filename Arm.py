@@ -37,6 +37,12 @@ class Arm:
     def change_angles(self, array_of_angles):
         self.linkeage_angles = array_of_angles
 
+        for i in range(len(self.linkeage_angles)):
+            if self.linkeage_angles[i] > np.pi:
+                self.linkeage_angles[i] -= 2 * np.pi
+            elif self.linkeage_angles[i] < -np.pi:
+                self.linkeage_angles[i] += 2 * np.pi
+
     # given a matplot plot, draw yourself on said plot
     def draw(self, plt):
         plt.clf() # clear figure
