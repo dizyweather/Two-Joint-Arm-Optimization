@@ -10,7 +10,6 @@ class Arm:
         # Instead have a function that can add lengths and linkeages to an array
         self.linkeage_angles = [] # angle of lineage in radians in global frame (floats)
         self.linkeage_lengths = [] # in meters or change to like pixels? (floats)
-        pass
 
     # Adds a new linkeage to the arrays
     def add_linkeage(self, angle, length):

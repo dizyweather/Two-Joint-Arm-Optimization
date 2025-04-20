@@ -3,23 +3,33 @@ from Arm import Arm
 from Simulation import Simulation
 import matplotlib.pyplot as plt
 import numpy as np
+import math
+import random
 
 arm = Arm((0, 0))
-arm.add_linkeage(0, 1)
-arm.add_linkeage(0, 1)
-arm.add_linkeage(0, 1)
-arm.add_linkeage(0, 1)
 
-goal = (np.random.randint(-2, 2), np.random.randint(-2, 2))
-
-sim = Simulation(goal, arm)
-sim.draw(plt)
-
-diff = sim.perform_newtons_method()
+number_of_linkeages = random.randint(2, 5)  # Random number of linkeages between 1 and 10
+# add n linkeages to the arm of various lengths and inital angles
+for i in range(number_of_linkeages):
+    arm.add_linkeage(np.random.uniform(-np.pi, np.pi), np.random.uniform(0.1, 1))
 
 bounds = 0
 for link_length in arm.linkeage_lengths:
     bounds += link_length
+
+# generate a random point inside the area of a radius
+radius = bounds
+
+theta = 2 * math.pi * random.random()
+length = random.random() * radius
+x = length * math.cos(theta)
+y = length * math.sin(theta)
+
+goal = (x, y)
+sim = Simulation(goal, arm)
+sim.draw(plt)
+
+diff = sim.perform_newtons_method()
 
 while diff > 0.01:
     # using matplotlib to draw the arm and goal
