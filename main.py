@@ -68,7 +68,7 @@ while diff > 0.01:
         y = np.linspace(-np.pi, np.pi, 100)
         X, Y = np.meshgrid(x, y)
         Z = function(X, Y)
-        ax.plot_surface(X, Y, Z, cmap='viridis', edgecolor='none')
+        ax.plot_surface(X, Y, Z, cmap='viridis', edgecolor='none', alpha = 0.4)
 
         plt.plot(goal[0], goal[1], 'g*')
 
@@ -76,8 +76,34 @@ while diff > 0.01:
         end_effector_position = arm.calculate_end_position()
         distance_from_goal = np.sqrt((end_effector_position[0] - sim.goal[0])**2 + (end_effector_position[1] - sim.goal[1])**2)
 
-        ax.scatter3D(arm.linkeage_angles[0], arm.linkeage_angles[1], distance_from_goal + 0.01, c='red', marker='o', s=100)
-        plt.pause(1)
+        # Plot the highlight ring (larger, lighter color)
+        ax.scatter3D(
+            arm.linkeage_angles[0],
+            arm.linkeage_angles[1],
+            distance_from_goal + 0.01,
+            c='white',          # Light color for the ring
+            marker='o',
+            s=300,              # BIGGER size
+            depthshade=False,
+            alpha=0.5,          # Partially transparent
+            edgecolors='black', # Add a black edge
+            linewidths=1
+        )
+
+        # Plot the actual dot (smaller, bright red)
+        ax.scatter3D(
+            arm.linkeage_angles[0],
+            arm.linkeage_angles[1],
+            distance_from_goal + 0.01,
+            c='red',            # Bright color
+            marker='o',
+            s=100,              # SMALLER size
+            depthshade=False,
+            edgecolors='black', # Optional strong edge
+            linewidths=1.5
+        )
+
+        plt.pause(0.25)
         
         
     # Plot arm and goal with proper bounds
