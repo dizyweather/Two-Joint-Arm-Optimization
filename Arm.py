@@ -69,12 +69,12 @@ class Arm:
             current_angle = self.linkeage_angles[i]
 
             # Calculate the position of the end effector
-            end_effector_position = (current_position[0] + current_length * np.cos(current_angle), 
-                                     current_position[1] + current_length * np.sin(current_angle))
+            end_effector_position = (current_position[0] + current_length * np.cos(current_angle), # Calculate the x-position of the end effector
+                                     current_position[1] + current_length * np.sin(current_angle)) # Calculate the y-position of the end effector
 
-            # Calculate the Jacobian entries
-            J[0, i] = -current_length * np.sin(current_angle)
-            J[1, i] = current_length * np.cos(current_angle)
+            # Calculate the Jacobian entries (How senstive will our end_effector be to small changes to the angle of our linkage)
+            J[0, i] = -current_length * np.sin(current_angle) # Partial deriv of x-position of end_effector
+            J[1, i] = current_length * np.cos(current_angle) # Partial deriv of y-position
 
             # Update the current position for the next link
             current_position = end_effector_position
