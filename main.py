@@ -1,4 +1,3 @@
-
 from Arm import Arm
 from Simulation import Simulation
 import matplotlib.pyplot as plt
@@ -8,16 +7,23 @@ import numpy as np
 import math
 import random
 
+# Set if you want to visualize the distance to goal function in 3d
 grapH_viz = True
+
 # Initalize and randomize the number of linkeages and their angles and lengths in the arm
 arm = Arm((0, 0))
 
-number_of_linkeages = 2
+if grapH_viz:
+    # Can only really visualize a 2 variable function in 3d so we set the number of linkeages to 2
+    number_of_linkeages = 2
+else:
+    number_of_linkeages = random.randint(1, 5)
 
 for i in range(number_of_linkeages):
     arm.add_linkeage(np.random.uniform(-np.pi, np.pi), np.random.uniform(0.1, 1))
 
 # generate random point within the area of the arm to set as the goal
+# NOTE: This may result in a goal that is unreachable if the arm lengths are 
 bounds = 0
 for link_length in arm.linkeage_lengths:
     bounds += link_length
@@ -127,7 +133,7 @@ while diff > 0.01:
         plt.pause(0.1)  # Pause to update the plot
     print("Change in position: ", diff)
     diff = sim.perform_newtons_method()
-
+plt.ioff() 
 plt.show()
 
 
