@@ -26,7 +26,7 @@ Given a robotic arm of n linkeages and &theta; degrees of freedom:
 * What is the most optimal route for the arm to reach the goal state?
 * How many different configurations can the arm make to reach the goal state?
 * How long does it take the arm to reach the goal state?
-* Does increasing the degrees of freedom/number of linkeages improve the likelihood of finding the goal state?
+* Does increasing the rotation angle/number of linkages always improve the likelihood of finding the goal state?
 
 ## Methods-data description
 calculate_jacobian()
