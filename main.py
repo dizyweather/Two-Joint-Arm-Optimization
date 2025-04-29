@@ -8,7 +8,7 @@ import math
 import random
 
 # Set if you want to visualize the distance to goal function in 3d
-grapH_viz = True
+grapH_viz = False
 
 # Initalize and randomize the number of linkeages and their angles and lengths in the arm
 arm = Arm((0, 0))
@@ -40,6 +40,7 @@ goal = (x, y)
 # Initalize simulation and difference
 sim = Simulation(goal, arm)
 diff = sim.perform_newtons_method()
+distance_from_goal =  np.linalg.norm(np.array(goal) - np.array(arm.calculate_end_position()))
 
 # If we are visualizing, set up the 3D plot
 if grapH_viz and len(arm.linkeage_angles) == 2:
@@ -50,7 +51,7 @@ if grapH_viz and len(arm.linkeage_angles) == 2:
     
 
 # While the change in end effector position is greater than the threshold (aka unstable)
-while diff > 0.01:
+while diff > 0.001 and distance_from_goal > 0.001:
     if grapH_viz and len(arm.linkeage_angles) == 2:
         # Keep view the same
         elev, azim = ax.elev, ax.azim # Stores the current view

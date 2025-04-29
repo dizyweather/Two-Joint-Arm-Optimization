@@ -36,8 +36,9 @@ class Simulation:
         new_angles = np.array(self.arm.linkeage_angles) + delta_angles
         self.arm.change_angles(new_angles)
 
+        new_end_effector_position = self.arm.calculate_end_position()
         # Return the magnitude of the error vector as a measure of convergence
-        return np.linalg.norm(error_vector)
+        return np.linalg.norm(np.array(new_end_effector_position) - np.array(end_effector_position))
     
     
        
