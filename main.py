@@ -37,10 +37,11 @@ y = length * math.sin(theta)
 
 goal = (x, y)
 
-# Initalize simulation and difference)
+# Initalize simulation and difference
 sim = Simulation(goal, arm)
 diff = sim.perform_newtons_method()
 
+# If we are visualizing, set up the 3D plot
 if grapH_viz and len(arm.linkeage_angles) == 2:
     fig = plt.figure()
     ax = fig.add_subplot( 111, projection='3d' )
@@ -112,7 +113,7 @@ while diff > 0.01:
             linewidths=1.5
         )
 
-        plt.pause(0.1)
+        plt.pause(0.2)
         
     else:
         # Graph settings

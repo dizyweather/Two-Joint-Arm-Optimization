@@ -3,11 +3,10 @@ import Arm
 
 
 # The thing that performs Newton's method on the arm
-# and draws
 class Simulation:
     # takes in an arm and goal point
     def __init__(self, goal, arm:Arm):
-        self.goal = goal # (x, t) tuple
+        self.goal = goal # (x, y) tuple
         self.arm = arm
         
     # Draw (Takes arm and goal, plots on plt)

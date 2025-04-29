@@ -5,18 +5,18 @@ import math
 
 class Arm:
     # Constructor
-    # Could have an empty constrcutor
     def __init__(self, start_position):
         self.start_position = start_position # tuple
         # Instead have a function that can add lengths and linkeages to an array
-        self.linkeage_angles = [] # angle of lineage in radians in global frame (floats)
+        self.linkeage_angles = [] # angle of linkeages in radians in global frame (floats)
         self.linkeage_lengths = [] # in meters or change to like pixels? (floats)
 
-    # Adds a new linkeage to the arrays
+    # Adds a new linkeage of a given angle and length to the arrays 
     def add_linkeage(self, angle, length):
         self.linkeage_angles.append(angle)
         self.linkeage_lengths.append(length)
 
+    # removes the last linkeage
     def remove_linkeage(self):
         if self.linkeage_angles and self.linkeage_lengths:
             self.linkeage_angles.pop()
@@ -31,10 +31,12 @@ class Arm:
             current_angle = self.linkeage_angles[i]
 
             current_position = (current_position[0] + current_length * np.cos(current_angle), 
-                          current_position[1] + current_length * np.sin(current_angle))
+                                current_position[1] + current_length * np.sin(current_angle))
 
         return current_position
 
+    # given an array of angles, change the arm's angles to the new angles
+    # renormlizes angles to be between -pi and pi
     def change_angles(self, array_of_angles):
         self.linkeage_angles = array_of_angles
 
@@ -46,8 +48,6 @@ class Arm:
 
     # given a matplot plot, draw yourself on said plot
     def draw(self, plt):
-        plt.clf() # clear figure
-
         current_position = self.start_position
 
         for i in range(len(self.linkeage_angles)):
@@ -65,11 +65,11 @@ class Arm:
             current_position = next_point
     
     # Returns a list of (x, y) positions for all joints, starting at the base and ending at the end effector.
+    # Used in animation in notebook
     def get_joint_positions(self):
 
         positions = [self.start_position]
         
-
         for i in range(len(self.linkeage_angles)):
             previous_position = positions[i]
             length = self.linkeage_lengths[i]
@@ -106,16 +106,4 @@ class Arm:
 
         return J
 
-# Outside the arm class, simple test case function
-def run_sim():
-
-    arm = Arm((0, 0))
-    arm.add_linkeage(0, 1)
-    arm.add_linkeage(np.pi / 2, 1)
-
-    sim = Simulation((1, 1), arm)
-    sim.draw(plt)
-    plt.axis('equal')
-    plt.show()
-        
         
