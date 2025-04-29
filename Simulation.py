@@ -27,6 +27,7 @@ class Simulation:
         # Calculate the Jacobian matrix
         J = self.arm.calculate_jacobian()
 
+        # Note, is this actually newton's method?
         # Calculate the change in angles using the pseudo-inverse of the Jacobian
         delta_angles = np.linalg.pinv(J).dot(error_vector)
         # bound delta_angles to a maximum of 0.05 radians so it doesn't jump around too much

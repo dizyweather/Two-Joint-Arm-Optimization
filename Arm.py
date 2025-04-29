@@ -1,6 +1,7 @@
 import numpy as np
 from Simulation import Simulation
 import matplotlib.pyplot as plt
+import math
 
 class Arm:
     # Constructor
@@ -62,6 +63,24 @@ class Arm:
             plt.plot(x_vals, y_vals)
 
             current_position = next_point
+    
+    # Returns a list of (x, y) positions for all joints, starting at the base and ending at the end effector.
+    def get_joint_positions(self):
+
+        positions = [self.start_position]
+        
+
+        for i in range(len(self.linkeage_angles)):
+            previous_position = positions[i]
+            length = self.linkeage_lengths[i]
+            angle = self.linkeage_angles[i]
+
+            x = previous_position[0] + length * math.cos(angle)
+            y = previous_position[1] + length * math.sin(angle)
+            positions.append((x, y))
+
+        return positions
+
     
     # calculate the Jacobian matrix for the arm
     # The Jacobian matrix relates the change in joint angles to the change in end effector position
