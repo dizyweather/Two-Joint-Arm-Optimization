@@ -19,6 +19,8 @@ if grapH_viz:
 else:
     number_of_linkeages = random.randint(2, 5)
 
+number_of_linkeages = 50
+
 for i in range(number_of_linkeages):
     arm.add_linkeage(np.random.uniform(-np.pi, np.pi), np.random.uniform(0.1, 1))
 
@@ -38,8 +40,8 @@ y = length * math.sin(theta)
 goal = (x, y)
 
 # Initalize simulation and difference
-sim = Simulation(goal, arm)
-diff = sim.perform_newtons_method()
+sim = Simulation(goal, arm, 0.1, use_newton=True)
+diff = sim.update()
 distance_from_goal =  np.linalg.norm(np.array(goal) - np.array(arm.calculate_end_position()))
 
 # If we are visualizing, set up the 3D plot
@@ -49,7 +51,7 @@ if grapH_viz and len(arm.linkeage_angles) == 2:
     ax.mouserotationstyle = 'azel'
     plt.ion()
     
-
+count = 1
 # While the change in end effector position is greater than the threshold (aka unstable)
 while diff > 0.001 and distance_from_goal > 0.001:
     if grapH_viz and len(arm.linkeage_angles) == 2:
@@ -71,8 +73,8 @@ while diff > 0.001 and distance_from_goal > 0.001:
         
         # Analytically calculate the function
         function = lambda theta1, theta2: np.sqrt(
-            (np.cos(theta1) * arm.linkeage_lengths[0] + np.cos(theta2) * arm.linkeage_lengths[1] - goal[0])**2 + 
-            (np.sin(theta1) * arm.linkeage_lengths[0] + np.sin(theta2) * arm.linkeage_lengths[1]- goal[1])**2)
+            (np.cos(theta1) * arm.linkeage_lengths[0] + np.cos(theta1 + theta2) * arm.linkeage_lengths[1] - goal[0])**2 + 
+            (np.sin(theta1) * arm.linkeage_lengths[0] + np.sin(theta1 + theta2) * arm.linkeage_lengths[1]- goal[1])**2)
         
         # Create a 100x100 grid of different angles for theta1 and theta2
         x = np.linspace(-np.pi, np.pi, 100)
@@ -136,8 +138,10 @@ while diff > 0.001 and distance_from_goal > 0.001:
         plt.text(sim.goal[0], sim.goal[1], f"Distance: {distance_from_goal:.2f}", fontsize=10, ha='right', va='bottom')
     
 
-    print("Change in position: ", diff)
-    diff = sim.perform_newtons_method()
+    diff = sim.update()
+    count += 1
+
+print(count, " iterations")
 plt.ioff() 
 plt.show()
 
