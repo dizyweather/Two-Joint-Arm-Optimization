@@ -61,7 +61,7 @@ class Simulation:
 
         # damping factor to prevent overshooting
         # this is a small value that is added to the diagonal of the Hessian matrix to make it invertible
-        lambda_damping = 1e-1  
+        lambda_damping = 1e-5  
 
         try:
             # calculate a approximated Hessian matrix (second partial derivative) using the Jacobian
