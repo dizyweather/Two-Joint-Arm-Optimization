@@ -4,7 +4,7 @@
 ## Description
 This project simulates a two-joint robotic arm tasked with navigating to a goal in a 2D space from any starting configuration.
 To determine an optimal path, the arm will employ Newton's Method--in which the program controlling the arm will alter the angles found on the arm using derivatives (CHANGE ONCE WE SETTLE ON NEW NEWTON’S METHOD). 
-Iteratively using this process, the arm will simulate the most efficient path to the goal using the following restrictions:
+Iteratively using this process, the arm will simulate an efficient path to the goal using the following restrictions:
 * Linkage Length - Length of each individual linkage
 * Maximum Rotation - Max rotation distance of each joint/linkage
 * Maximum Angle Change - How far the entire arm (angle from base to end of arm) may rotate in one iteration
@@ -13,7 +13,7 @@ This project will attempt to simulate realistic movement using Matplotlib to vis
 
 ## Key Terms
 **End_effector**: The position at the very end of the robotic arm, represented as a point in a 2D space.
-**Vector**: The direction of movement and its magnitude needed to reach the goal. In this case, we use error vectors:
+**Vector**: The direction of movement and its magnitude needed to reach the goal.
 * **Error vector**: The difference in the position of the end_effector minus the position of the goal. This creates a 2D vector that points from the end_effector to the goal.
 **Goal**: Described as a (x,y) point at which we want to the end_effector to lie on
 **Linkage**: A straight segment of the robotic arm. Each linkage has:
