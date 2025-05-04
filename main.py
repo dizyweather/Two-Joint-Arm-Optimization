@@ -17,7 +17,7 @@ if function_viz:
     # Can only really visualize a 2 variable function in 3d so we set the number of linkeages to 2
     number_of_linkeages = 2
 else:
-    number_of_linkeages = random.randint(2, 5)
+    number_of_linkeages = random.randint(2, 10)
 
 for i in range(number_of_linkeages):
     arm.add_linkeage(np.random.uniform(-np.pi, np.pi), np.random.uniform(0.1, 1))
@@ -37,10 +37,10 @@ y = length * math.sin(theta)
 
 goal = (x, y)
 
-# Initalize simulation and difference
-sim = Simulation(goal, arm, 0.1, use_newton=True)
-diff = sim.update()
-distance_from_goal =  np.linalg.norm(np.array(goal) - np.array(arm.calculate_end_position()))
+# Initalize simulation and dummy values to start the while loop
+sim = Simulation(goal, arm, 0.1, use_newton=False) # set if we want to use newton's method or not
+diff = 1 
+distance_from_goal =  1
 
 # If we are visualizing the function, we need to set up the 3d plot
 if function_viz and len(arm.linkeage_angles) == 2:
@@ -55,6 +55,10 @@ count = 1
 # While the change in end effector position is greater than the threshold (aka unstable)
 # and the distance from the goal is greater than the threshold (aka not at goal)
 while diff > 0.001 and distance_from_goal > 0.01:
+    # update simulation and count
+    diff = sim.update()
+    count += 1
+    
     # if we are visualizing the function
     if function_viz and len(arm.linkeage_angles) == 2:
         # Keep view the same
@@ -139,9 +143,7 @@ while diff > 0.001 and distance_from_goal > 0.01:
         distance_from_goal = np.sqrt((end_effector_position[0] - sim.goal[0])**2 + (end_effector_position[1] - sim.goal[1])**2)
         plt.text(sim.goal[0], sim.goal[1], f"Distance: {distance_from_goal:.2f}", fontsize=10, ha='right', va='bottom')
     
-    # update simulation and count
-    diff = sim.update()
-    count += 1
+    
 
 print(count, " iterations")
 plt.ioff() 

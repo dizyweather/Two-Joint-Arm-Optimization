@@ -97,13 +97,12 @@ class Arm:
         J = np.zeros((2, n))
         
         for j in range(n):
-            sum_angle = 0
             dx = 0
             dy = 0
             for i in range(j, n):
-                sum_angle = sum(self.linkeage_angles[:i+1])  # total angle up to link i (find current global angle)
-                dx += -self.linkeage_lengths[i] * np.sin(sum_angle)
-                dy +=  self.linkeage_lengths[i] * np.cos(sum_angle)
+                sum_angle = sum(self.linkeage_angles[:i+1])  # sum up angles from 0 to i, aka get current global angle
+                dx += -self.linkeage_lengths[i] * np.sin(sum_angle) # we know x is cosine of the angle, derivative is -sin
+                dy +=  self.linkeage_lengths[i] * np.cos(sum_angle) # we know y is sine of the angle, derivative is cos
 
             J[0, j] = dx  # ∂x/∂θ_j
             J[1, j] = dy  # ∂y/∂θ_j
