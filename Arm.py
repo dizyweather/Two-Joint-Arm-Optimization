@@ -91,20 +91,24 @@ class Arm:
     
     # calculate the Jacobian matrix for the arm
     # The Jacobian matrix relates the change in joint angles to the change in end effector position
+    # aka slope
     def calculate_jacobian(self):
         n = len(self.linkeage_angles)
         J = np.zeros((2, n))
-        joint_positions = self.get_joint_positions()
-        end_effector = np.array(joint_positions[-1])
+        
+        for j in range(n):
+            sum_angle = 0
+            dx = 0
+            dy = 0
+            for i in range(j, n):
+                sum_angle = sum(self.linkeage_angles[:i+1])  # total angle up to link i (find current global angle)
+                dx += -self.linkeage_lengths[i] * np.sin(sum_angle)
+                dy +=  self.linkeage_lengths[i] * np.cos(sum_angle)
 
-        for i in range(n):
-            joint_pos = np.array(joint_positions[i])
-            r = end_effector - joint_pos  # vector from joint to end effector
-
-            # 2D perpendicular vector (∂x/∂θ = -r_y, ∂y/∂θ = r_x)
-            J[0, i] = -r[1]
-            J[1, i] =  r[0]
+            J[0, j] = dx  # ∂x/∂θ_j
+            J[1, j] = dy  # ∂y/∂θ_j
 
         return J
+
 
         
