@@ -3,11 +3,10 @@ import Arm
 
 
 # The thing that performs Newton's method on the arm
-# and draws
 class Simulation:
     # takes in an arm and goal point
     def __init__(self, goal, arm:Arm):
-        self.goal = goal # (x, t) tuple
+        self.goal = goal # (x, y) tuple
         self.arm = arm
         
     # Draw (Takes arm and goal, plots on plt)
@@ -27,6 +26,7 @@ class Simulation:
         # Calculate the Jacobian matrix
         J = self.arm.calculate_jacobian()
 
+        # Note, is this actually newton's method?
         # Calculate the change in angles using the pseudo-inverse of the Jacobian
         delta_angles = np.linalg.pinv(J).dot(error_vector)
         # bound delta_angles to a maximum of 0.05 radians so it doesn't jump around too much
@@ -36,8 +36,9 @@ class Simulation:
         new_angles = np.array(self.arm.linkeage_angles) + delta_angles
         self.arm.change_angles(new_angles)
 
+        new_end_effector_position = self.arm.calculate_end_position()
         # Return the magnitude of the error vector as a measure of convergence
-        return np.linalg.norm(error_vector)
+        return np.linalg.norm(np.array(new_end_effector_position) - np.array(end_effector_position))
     
     
        
