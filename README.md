@@ -60,7 +60,7 @@ Data: Showcases the movement of the robotic arm
 
 Test Case 1: Goal lies on (0,0), base of the robotic arm.
 Videos: animation_jac_base.mp4, animation_new_base.mp4
-- [animation_jac_base.mp4](https://github.com/user-attachments/assets/127e2e66-00e9-4641-acf4-56fa3ad3010a)
+- [![animation_jac_base.mp4](https://github.com/user-attachments/assets/127e2e66-00e9-4641-acf4-56fa3ad3010a)]
 https://github.com/user-attachments/assets/389b6526-00a7-4bdb-a592-c5bc8e3dc698
 
 Test Case 2: Goal lies on (0,.1), right above the base of the robotic arm.
