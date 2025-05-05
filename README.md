@@ -102,6 +102,8 @@ Videos: animation_jac_imposs.mp4, animation_new_imposs.mp4
 - https://github.com/user-attachments/assets/e4174272-145f-43ba-801c-2cbb77e07560
 - https://github.com/user-attachments/assets/93c31801-16b0-45ab-8403-e57153bb4db5
 
+<br>
+
 | Test Case #   | Numerical Method | Iterations    | Converged? | Distance to goal |
 |---------------|------------------|---------------|------------|------------------|
 | 1             | Jacobian         | 2             | Y          | 10               |
