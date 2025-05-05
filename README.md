@@ -54,6 +54,77 @@ Our program is made up of 2 primary classes and 2 runner files.
 
 ## Results
 
+### Motion of the robotic arm
+- https://github.com/user-attachments/assets/1cfa17c6-080c-41bb-8b2e-7928e9209ea9
+
+### Test Case 1: Goal lies on (0,0), base of the robotic arm.
+Videos: animation_jac_base.mp4, animation_new_base.mp4
+- https://github.com/user-attachments/assets/127e2e66-00e9-4641-acf4-56fa3ad3010a
+- https://github.com/user-attachments/assets/389b6526-00a7-4bdb-a592-c5bc8e3dc698
+
+### Test Case 2: Goal lies on (0,.1), right above the base of the robotic arm.
+Videos: animation_jac_closegoal.mp4, animation_new_closegoal.mp4
+- https://github.com/user-attachments/assets/8ffaa5b5-c619-4423-a291-763e825670c1
+- https://github.com/user-attachments/assets/7255113b-104c-47d0-ac41-b418cf3fd358
+
+### Test Case 3: Goal doesn’t exist, but points to somewhere nearby the base.
+Videos: animation_jac_nogoal.mp4, animation_new_nogoal.mp4
+- https://github.com/user-attachments/assets/9d000bbd-b3d1-46ce-8c99-355f22a028b4
+- https://github.com/user-attachments/assets/cf724c6e-cf2d-4b94-b9d4-213ba4739518
+
+### Test Case 4: Goal lies on (2, 1), just out of reach of the robotic arm.
+Videos: animation_jac_noreach_2link.mp4, animation_new_noreach_2link.mp4
+- https://github.com/user-attachments/assets/98325379-b9f7-45cc-818c-746ddb8d8d1c
+- https://github.com/user-attachments/assets/11234d55-d657-4641-9801-3290fd782b82
+
+### Test Case 5: Goal lies on (-30, -20), 50 link arm
+Videos: animation_jac_normal.mp4, animation_new_normal.mp4
+- https://github.com/user-attachments/assets/f2c4c6d9-5bc7-4bce-a910-f9454eb7c80a
+- https://github.com/user-attachments/assets/5009505d-1e8d-4d57-9f7b-305bb8ce295f
+
+### Test Case 6: Goal lies on (30, 0), overlaid inside the robotic arm. 50 link arm
+Videos: animation_jac_layover.mp4, animation_new_layover.mp4
+- https://github.com/user-attachments/assets/bdeba6d0-7314-4598-aa16-08bb56fe3875
+- https://github.com/user-attachments/assets/a689c841-f357-4e1d-b5c9-4f628bcf91a9
+
+### Test Case 7: Goal lies on (-30, 0), 50 link arm
+Videos: animation_jac_opposite.mp4, animation_new_opposite.mp4
+- https://github.com/user-attachments/assets/ef8d8cac-1414-4cd5-b7e7-a61f70c1ec22
+- https://github.com/user-attachments/assets/58c9330c-6313-40d2-b1fa-db794b676cf5
+
+### Test Case 8: Goal lies on (-30, 40), just out of reach of the robotic arm, 50 link arm
+Videos: animation_jac_noreach.mp4, animation_new_noreach.mp4
+- https://github.com/user-attachments/assets/d869c573-8897-449f-a65d-225e39bcd296
+- https://github.com/user-attachments/assets/439ecbcf-33a9-43ff-9ca3-7c7872aa81b4
+
+### Test Case 9: Goal lies on (0, .5), 2 link arm
+Videos: animation_jac_imposs.mp4, animation_new_imposs.mp4
+- https://github.com/user-attachments/assets/e4174272-145f-43ba-801c-2cbb77e07560
+- https://github.com/user-attachments/assets/93c31801-16b0-45ab-8403-e57153bb4db5
+
+<br>
+
+| Test Case #   | Numerical Method | Iterations    | Converged? | Distance to goal |
+|---------------|------------------|---------------|------------|------------------|
+| 1             | Jacobian         | 2             | Y          | 10               |
+| 1             | Newton’s         | 2             | Y          | 10               |
+| 2             | Jacobian         | 3             | Y          | 2                | 
+| 2             | Newton’s         | 3             | Y          | 2                | 
+| 3             | Jacobian         | 999           | N          | Null             |
+| 3             | Newton’s         | 999           | N          | Null             |
+| 4             | Jacobian         | 265           | N          | .26              |
+| 4             | Newton’s         | 999           | N          | .26              |
+| 5             | Jacobian         | 28            | Y          | 72.89            |
+| 5             | Newton’s         | 27            | Y          | 72.89            |
+| 6             | Jacobian         | 61            | Y          | 21.38            |
+| 6             | Newton’s         | 38            | Y          | 21.38            |
+| 7             | Jacobian         | 159           | Y          | 77.19            |
+| 7             | Newton’s         | 52            | Y          | 77.19            |
+| 8             | Jacobian         | 999           | N          | 66.54            |
+| 8             | Newton’s         | 999           | N          | 66.54            |
+| 9             | Jacobian         | 0             | N          | 1.5              |
+| 9             | Newton’s         | 0             | N          | 1.5              |
+
 
 ## Conclusion
 So, did we achieve our goal? Yes, we did! As we can see above in the results, multiple instances of the arm successfully reaching the goal.
