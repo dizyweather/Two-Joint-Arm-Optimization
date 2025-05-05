@@ -53,7 +53,7 @@ Our program is made up of 2 primary classes and 2 runner files.
 * Uses FuncAnimation and HTML to display the animations in the output
 
 ## Results
-
+a
 Motion of the robotic arm
 Video: animation.mp4
 Data: Showcases the movement of the robotic arm
