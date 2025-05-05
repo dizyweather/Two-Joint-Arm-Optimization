@@ -60,7 +60,7 @@ Data: Showcases the movement of the robotic arm
 
 Test Case 1: Goal lies on (0,0), base of the robotic arm.
 Videos: animation_jac_base.mp4, animation_new_base.mp4
-https://github.com/user-attachments/assets/127e2e66-00e9-4641-acf4-56fa3ad3010a
+- [animation_jac_base.mp4](https://github.com/user-attachments/assets/127e2e66-00e9-4641-acf4-56fa3ad3010a)
 https://github.com/user-attachments/assets/389b6526-00a7-4bdb-a592-c5bc8e3dc698
 
 Test Case 2: Goal lies on (0,.1), right above the base of the robotic arm.
@@ -103,26 +103,26 @@ Videos: animation_jac_imposs.mp4, animation_new_imposs.mp4
 https://github.com/user-attachments/assets/e4174272-145f-43ba-801c-2cbb77e07560
 https://github.com/user-attachments/assets/93c31801-16b0-45ab-8403-e57153bb4db5
 
-Test Case # | Numerical Method | Iterations | Converged? | Distance to goal
-| ------------- | ------------- | ------------- | ------------- |
-| 1 | Jacobian  | 2 | Y | 10 |
-| 1 | Newton’s  | 2 | Y | 10 |
-| 2 | Jacobian  | 3 | Y | 2 | 
-| 2 | Newton’s  | 3 | Y | 2 | 
-| 3 | Jacobian  | 999 | N | Null |
-| 3 | Newton’s  | 999 | N | Null |
-| 4 | Jacobian  | 265 | N | .26 |
-| 4 | Newton’s  | 999 | N | .26 |
-| 5 | Jacobian  | 28 | Y | 72.89 |
-| 5 | Newton’s  | 27 | Y | 72.89 |
-| 6 | Jacobian  | 61 | Y | 21.38 |
-| 6 | Newton’s  | 38 | Y | 21.38 |
-| 7 | Jacobian  | 159 | Y | 77.19 |
-| 7 | Newton’s  | 52 | Y | 77.19 |
-| 8 | Jacobian  | 999 | N | 66.54 |
-| 8 | Newton’s  | 999 | N | 66.54 |
-| 9 | Jacobian  | 0 | N | 1.5 |
-| 9 | Newton’s  | 0 | N | 1.5 |
+| Test Case #   | Numerical Method | Iterations    | Converged? | Distance to goal |
+|---------------|------------------|---------------|------------|------------------|
+| 1             | Jacobian         | 2             | Y          | 10               |
+| 1             | Newton’s         | 2             | Y          | 10               |
+| 2             | Jacobian         | 3             | Y          | 2                | 
+| 2             | Newton’s         | 3             | Y          | 2                | 
+| 3             | Jacobian         | 999           | N          | Null             |
+| 3             | Newton’s         | 999           | N          | Null             |
+| 4             | Jacobian         | 265           | N          | .26              |
+| 4             | Newton’s         | 999           | N          | .26              |
+| 5             | Jacobian         | 28            | Y          | 72.89            |
+| 5             | Newton’s         | 27            | Y          | 72.89            |
+| 6             | Jacobian         | 61            | Y          | 21.38            |
+| 6             | Newton’s         | 38            | Y          | 21.38            |
+| 7             | Jacobian         | 159           | Y          | 77.19            |
+| 7             | Newton’s         | 52            | Y          | 77.19            |
+| 8             | Jacobian         | 999           | N          | 66.54            |
+| 8             | Newton’s         | 999           | N          | 66.54            |
+| 9             | Jacobian         | 0             | N          | 1.5              |
+| 9             | Newton’s         | 0             | N          | 1.5              |
 
 
 ## Conclusion
